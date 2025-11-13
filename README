@@ -1,3 +1,5 @@
+WordPane Audit is a lightweight and developer-friendly WordPress audit log plugin. It captures user actions, security-related events and admin activity such as logins, user updates and post/page deletions. Designed for maintainers, agencies and hosting providers who need transparent activity tracking and a reliable audit trail. Includes WP-CLI integration for fast log inspection.
+
 # 📘 WordPane Audit
 
 **WordPane Audit** é um plugin de auditoria para WordPress que registra ações sensíveis no painel, como alterações de usuários, logins e exclusões de posts/páginas.  
