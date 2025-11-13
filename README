@@ -1,186 +1,141 @@
-<h1>📘 WordPane Audit</h1>
+📘 WordPane Audit
 
-<p><strong>WordPane Audit</strong> é um plugin de auditoria para WordPress que registra ações críticas de segurança, como alterações em usuários, logins e exclusão de posts/páginas.</p>
-<p>Ele também inclui um comando próprio para o WP-CLI, permitindo consultar os logs diretamente pelo terminal.</p>
+WordPane Audit é um plugin de auditoria para WordPress que registra ações sensíveis no painel, como alterações de usuários, logins e exclusões de posts/páginas.
+Também inclui um comando WP-CLI para consultar logs diretamente via terminal.
 
-<p>Ideal para administradores, desenvolvedores, empresas de hospedagem, agências e plataformas que precisam de rastreabilidade e segurança em sites WordPress.</p>
+Ideal para administradores, desenvolvedores, empresas de hospedagem e agências que precisam de rastreabilidade e segurança.
 
-<hr>
+🚀 Recursos Principais
+✔️ Auditoria Completa
 
-<h2>📦 Recursos Principais</h2>
+O plugin registra automaticamente:
 
-<h3>✅ Auditoria Completa</h3>
-<p>O plugin registra automaticamente:</p>
-<ul>
-  <li>👤 <strong>Criação de usuários</strong></li>
-  <li>✏️ <strong>Atualização de perfis de usuários</strong></li>
-  <li>🗑️ <strong>Exclusão de usuários</strong></li>
-  <li>🔐 <strong>Logins de usuários</strong></li>
-  <li>📄 <strong>Exclusão de posts e páginas</strong></li>
-</ul>
+👤 Criação de usuários
 
-<h3>📝 Log Centralizado</h3>
-<p>Todos os eventos são gravados em:</p>
-<pre><code>wp-content/wordpane-audit.log</code></pre>
+✏️ Atualização de perfis
 
-<p>Cada linha contém:</p>
-<ul>
-  <li>Data e hora</li>
-  <li>Categoria da ação</li>
-  <li>Usuário responsável</li>
-  <li>ID do usuário</li>
-  <li>IP de origem</li>
-  <li>Detalhes da operação</li>
-</ul>
+🗑️ Exclusão de usuários
 
-<h3>🖥️ Comando WP-CLI Integrado</h3>
-<p>Visualize rapidamente as últimas ações registradas:</p>
-<pre><code>wp wordpane:audit last 50</code></pre>
+🔐 Logins de usuários
 
-<hr>
+📄 Exclusão de posts e páginas
 
-<h2>⚡ Instalação</h2>
+✔️ Log Centralizado
 
-<h3>📌 Opção 1 — Instalar como Plugin Normal</h3>
-<ol>
-  <li>Baixe os arquivos deste repositório.</li>
-  <li>Coloque a pasta <code>wordpane-audit</code> dentro de:
-    <pre><code>wp-content/plugins/</code></pre>
-  </li>
-  <li>Acesse o painel do WordPress &gt; Plugins e ative <strong>WordPane Audit</strong>.</li>
-</ol>
+Todos os eventos são salvos em:
 
-<h3>📌 Opção 2 — Instalar como MU-Plugin (Recomendado para Auditoria)</h3>
-<ol>
-  <li>Crie a pasta (se ainda não existir):
-    <pre><code>wp-content/mu-plugins/</code></pre>
-  </li>
-  <li>Coloque o arquivo <code>wordpane-audit.php</code> diretamente dentro de:
-    <pre><code>wp-content/mu-plugins/wordpane-audit.php</code></pre>
-  </li>
-  <li>MU-plugins são carregados automaticamente, não precisam ser ativados no painel.</li>
-</ol>
+wp-content/wordpane-audit.log
 
-<hr>
 
-<h2>🔧 Como Usar</h2>
+Inclui:
 
-<h3>📍 1. Ver logs em tempo real via SSH</h3>
-<pre><code>tail -f wp-content/wordpane-audit.log</code></pre>
+data e hora
 
-<h3>📍 2. Ver as últimas 100 linhas</h3>
-<pre><code>tail -n 100 wp-content/wordpane-audit.log</code></pre>
+categoria
 
-<h3>📍 3. Usar via WP-CLI</h3>
-<p>Mostrar as últimas 50 ações registradas:</p>
-<pre><code>wp wordpane:audit last</code></pre>
+usuário
 
-<p>Definir a quantidade de linhas:</p>
-<pre><code>wp wordpane:audit last 200</code></pre>
+ID
 
-<hr>
+IP
 
-<h2>🧩 Eventos Registrados</h2>
+detalhes da ação
 
-<table>
-  <thead>
-    <tr>
-      <th>Evento</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>user_register</code></td>
-      <td>Novo usuário criado</td>
-    </tr>
-    <tr>
-      <td><code>profile_update</code></td>
-      <td>Perfil de usuário atualizado</td>
-    </tr>
-    <tr>
-      <td><code>delete_user</code></td>
-      <td>Usuário excluído</td>
-    </tr>
-    <tr>
-      <td><code>wp_login</code></td>
-      <td>Usuário efetuou login</td>
-    </tr>
-    <tr>
-      <td><code>before_delete_post</code></td>
-      <td>Post ou página excluído(a)</td>
-    </tr>
-  </tbody>
-</table>
+✔️ Comando WP-CLI Integrado
 
-<hr>
+Veja rapidamente as últimas ações registradas:
 
-<h2>📁 Estrutura do Log</h2>
+wp wordpane:audit last 50
 
-<p>Cada linha segue o formato aproximado:</p>
+📦 Instalação
+🔹 Instalar como plugin normal
 
-<pre><code>[2025-11-13 14:32:10] category=delete_post user=admin(ID:1) ip=123.45.67.89 | ID=42 type=page status=publish title="Página Exemplo"</code></pre>
+Baixe o ZIP deste repositório
 
-<p>Incluindo:</p>
-<ul>
-  <li>Timestamp</li>
-  <li>Categoria do evento (<code>login</code>, <code>delete_post</code>, <code>user_register</code>, etc.)</li>
-  <li>Usuário (login + ID)</li>
-  <li>IP da requisição</li>
-  <li>Dados da ação (ID do post/usuário, título, tipo, etc.)</li>
-</ul>
+Extraia para:
 
-<hr>
+wp-content/plugins/wordpane-audit/
 
-<h2>🤖 Hooks Utilizados</h2>
 
-<p>O plugin utiliza os seguintes hooks nativos do WordPress:</p>
-<ul>
-  <li><code>user_register</code></li>
-  <li><code>profile_update</code></li>
-  <li><code>delete_user</code></li>
-  <li><code>wp_login</code></li>
-  <li><code>before_delete_post</code></li>
-</ul>
+Ative no painel do WordPress.
 
-<hr>
+🔹 Instalar como MU-Plugin (Recomendado)
 
-<h2>🛠️ Requisitos</h2>
+Crie a pasta, se não existir:
 
-<ul>
-  <li>WordPress 5.0 ou superior</li>
-  <li>PHP 7.4 ou superior</li>
-  <li>WP-CLI (opcional, mas recomendado)</li>
-</ul>
+wp-content/mu-plugins/
 
-<hr>
 
-<h2>🚀 Roadmap (Melhorias Futuras)</h2>
+Envie o arquivo:
 
-<ul>
-  <li>Painel administrativo com visualização dos logs</li>
-  <li>Exportação dos logs em CSV/JSON</li>
-  <li>Integração com APIs externas (WhatsPane / ZPRO / Telegram)</li>
-  <li>Logs separados por categoria (usuários, posts, logins, etc.)</li>
-  <li>Monitoramento de alterações em opções, plugins e temas</li>
-</ul>
+wp-content/mu-plugins/wordpane-audit.php
 
-<hr>
 
-<h2>🤝 Contribuição</h2>
+Pronto – MU-Plugins são ativados automaticamente.
 
-<p>Pull Requests são bem-vindos!</p>
-<p>Você pode abrir <em>Issues</em> para sugerir melhorias, reportar bugs ou propor novas funcionalidades.</p>
+📝 Como Usar
+🔎 Ver logs em tempo real via SSH
+tail -f wp-content/wordpane-audit.log
 
-<hr>
+🔎 Ver as últimas 100 linhas
+tail -n 100 wp-content/wordpane-audit.log
 
-<h2>📄 Licença</h2>
+🔎 Via WP-CLI
+wp wordpane:audit last
+wp wordpane:audit last 200
 
-<p>Este projeto é distribuído sob a <strong>MIT License</strong>. Veja o arquivo <code>LICENSE</code> para mais detalhes.</p>
+📁 Eventos Registrados
+Evento	Descrição
+user_register	Usuário criado
+profile_update	Perfil atualizado
+delete_user	Usuário excluído
+wp_login	Login realizado
+before_delete_post	Post ou página excluído
+🧾 Exemplo de Registro
+[2025-11-13 14:32:10] category=delete_post user=admin(ID:1) ip=123.45.67.89 | ID=42 type=page status=publish title="Página Exemplo"
 
-<hr>
+🛠️ Hooks Utilizados
 
-<h2>🧑‍💻 Autor</h2>
+user_register
 
-<p><strong>WordPane</strong> — Segurança, Auditoria e Inovação para WordPress<br>
-<a href="https://wordpane.com" target="_blank" rel="noopener noreferrer">https://wordpane.com</a></p>
+profile_update
+
+delete_user
+
+wp_login
+
+before_delete_post
+
+📌 Requisitos
+
+WordPress 5.0+
+
+PHP 7.4+
+
+WP-CLI (opcional, mas recomendado)
+
+🗺️ Roadmap
+
+Painel administrativo com visualização dos logs
+
+Exportação em CSV/JSON
+
+Logs separados por categorias
+
+Integração com Webhooks / ZPRO / WhatsPane / Telegram
+
+Auditoria adicional em opções, plugins e temas
+
+🤝 Contribuição
+
+Contribuições são bem-vindas!
+Abra uma Issue ou envie um Pull Request com melhorias ou correções.
+
+📄 Licença
+
+Distribuído sob a MIT License.
+
+🧑‍💻 Autor
+
+WordPane – Segurança e Inovação para WordPress
+https://wordpane.com
